@@ -7,7 +7,9 @@ import { map, catchError } from 'rxjs/operators';
 import { ICustomer, IOrder, IState, IPagedResults, ICustomerResponse } from '../shared/interfaces';
 import { environment } from '../../environments/environment.prod';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DataService {
     baseUrl = environment.apiUrl;
     baseCustomersUrl = this.baseUrl + 'customers';

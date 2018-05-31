@@ -170,11 +170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreModule", function() { return CoreModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data.service */ "./src/app/core/data.service.ts");
-/* harmony import */ var _data_filter_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data-filter.service */ "./src/app/core/data-filter.service.ts");
-/* harmony import */ var _sorter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sorter */ "./src/app/core/sorter.ts");
-/* harmony import */ var _trackby_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./trackby.service */ "./src/app/core/trackby.service.ts");
-/* harmony import */ var _shared_ensureModuleLoadedOnceGuard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/ensureModuleLoadedOnceGuard */ "./src/app/shared/ensureModuleLoadedOnceGuard.ts");
+/* harmony import */ var _shared_ensureModuleLoadedOnceGuard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/ensureModuleLoadedOnceGuard */ "./src/app/shared/ensureModuleLoadedOnceGuard.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -200,10 +196,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
-
-
-
 var CoreModule = /** @class */ (function (_super) {
     __extends(CoreModule, _super);
     //Looks for the module in the parent injector to see if it's already been loaded (only want it loaded once)
@@ -215,15 +207,12 @@ var CoreModule = /** @class */ (function (_super) {
             imports: [
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
             ],
-            providers: [
-                _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _data_filter_service__WEBPACK_IMPORTED_MODULE_3__["DataFilterService"], _sorter__WEBPACK_IMPORTED_MODULE_4__["Sorter"], _trackby_service__WEBPACK_IMPORTED_MODULE_5__["TrackByService"]
-            ]
         }),
         __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"])()), __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SkipSelf"])()),
         __metadata("design:paramtypes", [CoreModule])
     ], CoreModule);
     return CoreModule;
-}(_shared_ensureModuleLoadedOnceGuard__WEBPACK_IMPORTED_MODULE_6__["EnsureModuleLoadedOnceGuard"]));
+}(_shared_ensureModuleLoadedOnceGuard__WEBPACK_IMPORTED_MODULE_2__["EnsureModuleLoadedOnceGuard"]));
 
 
 
@@ -287,7 +276,9 @@ var DataFilterService = /** @class */ (function () {
         }
     };
     DataFilterService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
     ], DataFilterService);
     return DataFilterService;
 }());
@@ -402,7 +393,9 @@ var DataService = /** @class */ (function () {
         return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].throw(error || 'ASP.NET Core server error');
     };
     DataService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DataService);
     return DataService;
@@ -473,7 +466,9 @@ var Sorter = /** @class */ (function () {
         return (val && (typeof val === 'string' || val instanceof String));
     };
     Sorter = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
     ], Sorter);
     return Sorter;
 }());
@@ -507,7 +502,9 @@ var TrackByService = /** @class */ (function () {
         return customer.id;
     };
     TrackByService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
     ], TrackByService);
     return TrackByService;
 }());

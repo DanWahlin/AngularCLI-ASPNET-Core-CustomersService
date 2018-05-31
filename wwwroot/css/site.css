@@ -1,0 +1,27 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    margin-top: 10px;
+    width: 200px;
+}
+
+.app-title {
+    font-size: 20px;
+    color: black;
+}
+
+main {
+    position: relative;
+    padding-top: 60px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+

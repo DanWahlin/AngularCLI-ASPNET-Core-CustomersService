@@ -1,6 +1,6 @@
-# Angular ASP.NET Core Seed Project
+# Angular ASP.NET Core Project
 
-This project provides a "seed" for getting started using 
+This project provides an example of getting started using 
 ASP.NET Core and Angular together in one project. The project
 has the following goals:
 
@@ -55,12 +55,16 @@ dotnet build
 dotnet watch run
 ``` 
 
-2. Open the `Client/src/app/core/services/data.service.ts` file and change the `url` property to `http://localhost:5000/api/messages`
+2. Open the `Client/src/environments/environment.ts` file and change the `apiUrl` property to `http://localhost:5000/api/`
 
 3. Launch the Angular project by running `ng serve -o`
 
 4. Note that to do an `ng build` you'll need to open the `Client/angular.json` file and change the `outputDirectory` property to a value of `dist`.
 
-5. CORS is enabled in the `Startup.cs` file. You'll more than likely want to lock-down some of the settings for it though.
+A few additional notes:
+
+* CORS is enabled in the `Startup.cs` file. You'll more than likely want to lock-down some of the settings for it though.
+* Cross-Site Request Forgery (XSRF) is turned on by default for the Web API POST/PUT/DELETE methods. You may want to remove the associated attribute from these methods since in a real-world scenario you'd likely implement token authentication
+in the API.
 
 

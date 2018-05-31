@@ -78,6 +78,18 @@ namespace Angular_ASPNETCore_CustomersService
                 // options.IncludeXmlComments(filePath);
 
             });
+
+            services.AddCors(o => o.AddPolicy("AllowAllPolicy", options =>
+            {
+                options.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+            }));
+
+            services.AddCors(o => o.AddPolicy("AllowSpecific", options => 
+                    options.WithOrigins("http://localhost:4200")
+                           .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                           .WithHeaders("accept", "content-type", "origin", "X-Inline-Count")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -113,14 +125,7 @@ namespace Angular_ASPNETCore_CustomersService
             });
 
             // This would need to be locked down as needed (very open right now)
-            app.UseCors((corsPolicyBuilder) => 
-            {
-                corsPolicyBuilder.AllowAnyOrigin();
-                corsPolicyBuilder.AllowAnyMethod();
-                corsPolicyBuilder.AllowAnyHeader();
-                // Uncomment if you have any custom headers you need to expose
-                // corsPolicyBuilder.WithExposedHeaders("X-InlineCount");
-            });
+            app.UseCors("AllowAllPolicy");
 
             app.UseStaticFiles();
 

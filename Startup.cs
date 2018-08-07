@@ -93,7 +93,8 @@ namespace Angular_ASPNETCore_CustomersService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IAntiforgery antiforgery)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+            CustomersDbSeeder customersDbSeeder, IAntiforgery antiforgery)
         {
             if (env.IsDevelopment())
             {
@@ -147,6 +148,8 @@ namespace Angular_ASPNETCore_CustomersService
 
                 routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
             });
+
+            customersDbSeeder.SeedAsync(app.ApplicationServices).Wait();
         }
     }
 }

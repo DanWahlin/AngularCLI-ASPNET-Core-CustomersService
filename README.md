@@ -1,7 +1,7 @@
 # Angular ASP.NET Core Project
 
 This project provides an example of getting started using 
-ASP.NET Core and Angular together in one project and is an updated version of the code shown in the [Integrating Angular with ASP.NET Core RESTful Services on Pluralsight](https://www.pluralsight.com/courses/angular-aspnetcore-restful-services). If you're coming from the Pluralsight course you'll find the Angular code for the project in the Client folder now.
+ASP.NET Core and Angular together in one project and is an updated version of the code shown in the [Integrating Angular with ASP.NET Core RESTful Services on Pluralsight](https://www.pluralsight.com/courses/angular-aspnetcore-restful-services). If you're coming from the Pluralsight course you'll find the Angular code for the project in the `Client` folder now.
 
 The project
 has the following goals:

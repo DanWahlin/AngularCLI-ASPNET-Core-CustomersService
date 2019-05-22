@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  web:
+    container_name: 'aspnetcoreapp-prod'
+    image: 'aspnetcoreapp-prod'
+    build:
+      context: .
+      dockerfile: aspnetcore.production.dockerfile
+    ports:
+     - "5000:80"
+    networks:
+      - aspnetcoreapp-network
+
+networks:
+  aspnetcoreapp-network:
+    driver: bridge
+
+

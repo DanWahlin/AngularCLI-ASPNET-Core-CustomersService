@@ -9,15 +9,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Swagger;
+using Angular_ASPNETCore_CustomersService.Repository;
 
 // 3.0
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 
-using Microsoft.EntityFrameworkCore;
-using Swashbuckle.AspNetCore.Swagger;
-using Angular_ASPNETCore_CustomersService.Repository;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Angular_ASPNETCore_CustomersService
 {

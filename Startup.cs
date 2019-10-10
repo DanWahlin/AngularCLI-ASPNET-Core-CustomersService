@@ -9,10 +9,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
+
+// 3.0
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
+
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Angular_ASPNETCore_CustomersService.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,10 +48,20 @@ namespace Angular_ASPNETCore_CustomersService
                 options.UseSqlite(Configuration.GetConnectionString("CustomersSqliteConnectionString"));
             });
 
+            /* For 2.0
             services.AddMvc(options =>
             {
                 // Global way to add anti-forgery to dangerous requests: POST, PUT, PATCH and DELETE
                 // options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
+            */
+
+            // For 3.0
+            services.AddControllers();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "Client/dist";
             });
 
             services.AddScoped<ICustomersRepository, CustomersRepository>();
@@ -93,7 +106,9 @@ namespace Angular_ASPNETCore_CustomersService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app, 
+            /* 2.0: IHostingEnvironment */ 
+            /* 3.0 */ IWebHostEnvironment env, 
             CustomersDbSeeder customersDbSeeder, IAntiforgery antiforgery)
         {
             if (env.IsDevelopment())
@@ -130,6 +145,11 @@ namespace Angular_ASPNETCore_CustomersService
 
             app.UseStaticFiles();
 
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
 
@@ -140,6 +160,7 @@ namespace Angular_ASPNETCore_CustomersService
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            /* For 2.0
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -148,6 +169,29 @@ namespace Angular_ASPNETCore_CustomersService
 
                 routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
             });
+            */
+
+            // For 3.0
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "Client";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
+
 
             customersDbSeeder.SeedAsync(app.ApplicationServices).Wait();
         }

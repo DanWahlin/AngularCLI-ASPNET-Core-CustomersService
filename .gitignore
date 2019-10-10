@@ -6,6 +6,8 @@
 /out-tsc
 /bin
 /obj
+/publish
+/Client/dist
 
 # dependencies
 node_modules

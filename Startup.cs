@@ -10,13 +10,10 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Swashbuckle.AspNetCore.Swagger;
 using Angular_ASPNETCore_CustomersService.Repository;
-
-// 3.0
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-
+using Microsoft.OpenApi.Models;
 
 namespace Angular_ASPNETCore_CustomersService
 {
@@ -47,25 +44,12 @@ namespace Angular_ASPNETCore_CustomersService
                 options.UseSqlite(Configuration.GetConnectionString("CustomersSqliteConnectionString"));
             });
 
-            /* For 2.0
-            services.AddMvc(options =>
-            {
-                // Global way to add anti-forgery to dangerous requests: POST, PUT, PATCH and DELETE
-                // options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            });
-            */
-
-            // For 3.0
             services.AddControllers();
 
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "Client/dist";
             });
-
-            services.AddScoped<ICustomersRepository, CustomersRepository>();
-            services.AddScoped<IStatesRepository, StatesRepository>();
-            services.AddTransient<CustomersDbSeeder>();
 
             // Handle XSRF Name for Header
             services.AddAntiforgery(options => {
@@ -75,20 +59,14 @@ namespace Angular_ASPNETCore_CustomersService
             //https://github.com/domaindrivendev/Swashbuckle.AspNetCore
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "Application API",
                     Description = "Application Documentation",
-                    TermsOfService = "None",
-                    Contact = new Contact { Name = "Author", Url = "" },
-                    License = new License { Name = "MIT", Url = "https://en.wikipedia.org/wiki/MIT_License" }
+                    Contact = new OpenApiContact { Name = "Author" },
+                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://en.wikipedia.org/wiki/MIT_License") }
                 });
-
-                // Add XML comment document by uncommenting the following
-                // var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "MyApi.xml");
-                // options.IncludeXmlComments(filePath);
-
             });
 
             services.AddCors(o => o.AddPolicy("AllowAllPolicy", options =>
@@ -102,13 +80,17 @@ namespace Angular_ASPNETCore_CustomersService
                     options.WithOrigins("http://localhost:4200")
                            .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
                            .WithHeaders("accept", "content-type", "origin", "X-Inline-Count")));
+
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
+            services.AddScoped<IStatesRepository, StatesRepository>();
+            services.AddTransient<CustomersDbSeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, 
-            /* 2.0: IHostingEnvironment */ 
-            /* 3.0 */ IWebHostEnvironment env, 
-            CustomersDbSeeder customersDbSeeder, IAntiforgery antiforgery)
+            IWebHostEnvironment env, 
+            CustomersDbSeeder customersDbSeeder, 
+            IAntiforgery antiforgery)
         {
             if (env.IsDevelopment())
             {
@@ -119,31 +101,10 @@ namespace Angular_ASPNETCore_CustomersService
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Manually handle setting XSRF cookie. Needed because HttpOnly 
-            // has to be set to false so that
-            // Angular is able to read/access the cookie.
-            app.Use((context, next) =>
-            {
-                string path = context.Request.Path.Value;
-                if (path != null && !path.ToLower().Contains("/api"))
-                {
-                    var tokens = antiforgery.GetAndStoreTokens(context);
-                    context.Response.Cookies.Append("XSRF-TOKEN", 
-                        tokens.RequestToken, 
-                        new CookieOptions { 
-                            HttpOnly = false
-                        }
-                    );
-                }
-
-                return next();
-            });
-
             // This would need to be locked down as needed (very open right now)
             app.UseCors("AllowAllPolicy");
-
+            
             app.UseStaticFiles();
-
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
@@ -159,16 +120,21 @@ namespace Angular_ASPNETCore_CustomersService
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            /* For 2.0
-            app.UseMvc(routes =>
+            // Manually handle setting XSRF cookie. Needed because HttpOnly 
+            // has to be set to false so that Angular is able to read/access the cookie.
+            app.Use((context, next) =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                string path = context.Request.Path.Value;
+                if (path != null && !path.ToLower().Contains("/api"))
+                {
+                    var tokens = antiforgery.GetAndStoreTokens(context);
+                    context.Response.Cookies.Append("XSRF-TOKEN", 
+                        tokens.RequestToken, new CookieOptions { HttpOnly = false }
+                    );
+                }
 
-                routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
+                return next();
             });
-            */
 
             // For 3.0
             app.UseRouting();
@@ -190,7 +156,6 @@ namespace Angular_ASPNETCore_CustomersService
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-
 
             customersDbSeeder.SeedAsync(app.ApplicationServices).Wait();
         }

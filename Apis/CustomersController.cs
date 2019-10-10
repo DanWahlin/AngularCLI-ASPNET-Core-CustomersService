@@ -80,7 +80,7 @@ namespace Angular_ASPNETCore_CustomersService.Apis
 
         // POST api/customers
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult> CreateCustomer([FromBody]Customer customer)
@@ -109,7 +109,7 @@ namespace Angular_ASPNETCore_CustomersService.Apis
 
         // PUT api/customers/5
         [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult> UpdateCustomer(int id, [FromBody]Customer customer)
@@ -137,7 +137,7 @@ namespace Angular_ASPNETCore_CustomersService.Apis
 
         // DELETE api/customers/5
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult> DeleteCustomer(int id)

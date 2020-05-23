@@ -45,6 +45,10 @@ dotnet watch run
 
 9. An MVC view is serving the Angular application.
 
+NOTE: If you get a certificate error due to the HTTPS redirect, run the following command to install a local dev certificate:
+
+`dotnet dev-certs https --trust`
+
 ## Running Angular Separately from ASP.NET Core
 
 If you'd like to run the Angular project completely separate from ASP.NET Core perform the following steps:

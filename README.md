@@ -17,9 +17,9 @@ The project has the following goals:
 
 To run the project perform the following steps:
 
-1. Install Node.js 10.16.x or higher - https://nodejs.org
+1. Install Node.js 12.16.x or higher - https://nodejs.org
 
-2. Install ASP.NET core 3.0 or higher - https://dot.net
+2. Install ASP.NET core 3.1 or higher - https://dot.net
 
 3. Install the Angular CLI:
 
@@ -29,7 +29,7 @@ To run the project perform the following steps:
 
 5. Run `npm install`
 
-6. Run `ng build --watch` to start the Angular build process and watch for changes. The build process will add the output to the project's `wwwroot` folder.
+6. Run `ng build --watch` to start the Angular build process and watch for changes. 
 
 7. Open a new command window in the root of the project and run the following commands:
 
@@ -42,7 +42,6 @@ dotnet watch run
 8. Visit http://localhost:5000 in the browser
 
 9. An MVC view is serving the Angular application.
-
 
 ## Running Angular Separately from ASP.NET Core
 

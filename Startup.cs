@@ -46,6 +46,7 @@ namespace Angular_ASPNETCore_CustomersService
 
             services.AddControllers();
 
+            // Allows files at Client/dist (Angular app) to be referenced from _layout.cshtml
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "Client/dist";
@@ -151,10 +152,10 @@ namespace Angular_ASPNETCore_CustomersService
 
                 spa.Options.SourcePath = "Client";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                // if (env.IsDevelopment())
+                // {
+                //     spa.UseAngularCliServer(npmScript: "start");
+                // }
             });
 
             customersDbSeeder.SeedAsync(app.ApplicationServices).Wait();

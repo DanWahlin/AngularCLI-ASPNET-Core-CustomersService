@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Angular_ASPNETCore_CustomersService.Repository;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.OpenApi.Models;
 
 namespace Angular_ASPNETCore_CustomersService
@@ -45,12 +44,6 @@ namespace Angular_ASPNETCore_CustomersService
             });
 
             services.AddControllersWithViews();
-
-            // Allows files at Client/dist (Angular app) to be referenced from _layout.cshtml
-            // services.AddSpaStaticFiles(configuration =>
-            // {
-            //     configuration.RootPath = "Client/dist";
-            // });
 
             // Handle XSRF Name for Header
             services.AddAntiforgery(options => {
@@ -106,10 +99,6 @@ namespace Angular_ASPNETCore_CustomersService
             app.UseCors("AllowAllPolicy");
             
             app.UseStaticFiles();
-            // if (!env.IsDevelopment())
-            // {
-            //     app.UseSpaStaticFiles();
-            // }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();

@@ -44,13 +44,13 @@ namespace Angular_ASPNETCore_CustomersService
                 options.UseSqlite(Configuration.GetConnectionString("CustomersSqliteConnectionString"));
             });
 
-            services.AddControllers();
+            services.AddControllersWithViews();
 
             // Allows files at Client/dist (Angular app) to be referenced from _layout.cshtml
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "Client/dist";
-            });
+            // services.AddSpaStaticFiles(configuration =>
+            // {
+            //     configuration.RootPath = "Client/dist";
+            // });
 
             // Handle XSRF Name for Header
             services.AddAntiforgery(options => {
@@ -106,10 +106,10 @@ namespace Angular_ASPNETCore_CustomersService
             app.UseCors("AllowAllPolicy");
             
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            // if (!env.IsDevelopment())
+            // {
+            //     app.UseSpaStaticFiles();
+            // }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
@@ -143,19 +143,13 @@ namespace Angular_ASPNETCore_CustomersService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller}/{action}/{id?}");
 
-                spa.Options.SourcePath = "Client";
-
-                // if (env.IsDevelopment())
-                // {
-                //     spa.UseAngularCliServer(npmScript: "start");
-                // }
+                // Handle redirecting client-side routes to Customers/Index route
+                endpoints.MapFallbackToController("Index", "Home");
             });
 
             customersDbSeeder.SeedAsync(app.ApplicationServices).Wait();

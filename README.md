@@ -7,7 +7,7 @@ The project has the following goals:
 
 * Keep the Angular project code completely separate from the ASP.NET Core code to make updates of either technology easier in the future. This was a key consideration when organizing the folders/files in the project.
 
-* Provide a way to serve an Angular application using an MVC view.
+* Provide a way to serve an Angular application using an MVC view (you can easily change this to serve from a Razor Page as well).
 
 * Allow standard MVC controllers/views to be used in situations where part of the application runs outside of Angular.
 
@@ -16,6 +16,8 @@ The project has the following goals:
 ## Running the Project
 
 To run the project perform the following steps:
+
+NOTE: If you're on Windows, download the project from Github as a .zip file, and want to open the project in Visual Studio, make sure you unblock the .zip file first. Right-click on it, select Properties, and check the Unblock checkbox.
 
 1. Install Node.js 12.16.x or higher - https://nodejs.org
 

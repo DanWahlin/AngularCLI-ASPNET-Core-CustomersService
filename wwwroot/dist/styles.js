@@ -27,13 +27,13 @@ module.exports = exports;
 
 "use strict";
 
-
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
 */
 // css base code, injected by the css-loader
 // eslint-disable-next-line func-names
+
 module.exports = function (useSourceMap) {
   var list = []; // return the list of modules as css string
 
@@ -426,11 +426,9 @@ options.singleton = false;
 
 var update = api(content, options);
 
-var exported = content.locals ? content.locals : {};
 
 
-
-module.exports = exported;
+module.exports = content.locals || {};
 
 /***/ }),
 

@@ -317,7 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment.prod */ "./src/environments/environment.prod.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -328,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
-        this.baseUrl = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl;
+        this.baseUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl;
         this.baseCustomersUrl = this.baseUrl + 'customers';
         this.baseStatesUrl = this.baseUrl + 'states';
     }
@@ -1894,24 +1894,6 @@ var ValidationService = /** @class */ (function () {
     return ValidationService;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/environments/environment.prod.ts":
-/*!**********************************************!*\
-  !*** ./src/environments/environment.prod.ts ***!
-  \**********************************************/
-/*! exports provided: environment */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-var environment = {
-    production: true,
-    apiUrl: '/api/'
-};
 
 
 /***/ }),

@@ -5,7 +5,7 @@ import { Observable,  } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { ICustomer, IOrder, IState, IPagedResults, ICustomerResponse } from '../shared/interfaces';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'

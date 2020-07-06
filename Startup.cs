@@ -67,13 +67,15 @@ namespace Angular_ASPNETCore_CustomersService
             {
                 options.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader();
+                        .AllowAnyHeader()
+                        .WithExposedHeaders("X-InlineCount");
             }));
 
             services.AddCors(o => o.AddPolicy("AllowSpecific", options => 
                     options.WithOrigins("http://localhost:4200")
                            .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
-                           .WithHeaders("accept", "content-type", "origin", "X-Inline-Count")));
+                           .WithHeaders("accept", "content-type", "origin", "X-InlineCount")
+                           .WithExposedHeaders("X-InlineCount")));
 
             services.AddScoped<ICustomersRepository, CustomersRepository>();
             services.AddScoped<IStatesRepository, StatesRepository>();

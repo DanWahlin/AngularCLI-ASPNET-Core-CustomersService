@@ -11,7 +11,7 @@ import { ICustomer, IOrder, IPagedResults } from '../shared/interfaces';
 })
 export class CustomersComponent implements OnInit {
 
-  title: string;
+  title = '';
   customers: ICustomer[] = [];
   filteredCustomers: ICustomer[] = [];
 

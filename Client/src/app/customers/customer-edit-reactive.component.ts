@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DataService } from '../core/data.service';
 import { ICustomer, IState } from '../shared/interfaces';
@@ -12,7 +12,10 @@ import { ValidationService } from '../shared/validation.service';
 })
 export class CustomerEditReactiveComponent implements OnInit {
 
-  customerForm: FormGroup;
+  customerForm: FormGroup = {} as FormGroup;
+  get f(): { [key: string]: AbstractControl } {
+    return this.customerForm.controls;
+  }
   customer: ICustomer = {
     firstName: '',
     lastName: '',
@@ -23,9 +26,9 @@ export class CustomerEditReactiveComponent implements OnInit {
     stateId: 0,
     zip: 0
   };
-  states: IState[];
-  errorMessage: string;
-  deleteMessageEnabled: boolean;
+  states: IState[] = [];
+  errorMessage = '';
+  deleteMessageEnabled: boolean = false;
   operationText: string = 'Insert';
   
   constructor(private router: Router, 
@@ -113,7 +116,7 @@ export class CustomerEditReactiveComponent implements OnInit {
 
   delete(event: Event) {
     event.preventDefault();
-    this.dataService.deleteCustomer(this.customer.id)
+    this.dataService.deleteCustomer(this.customer.id as string)
         .subscribe((status: boolean) => {
           if (status) {
             this.router.navigate(['/customers']);

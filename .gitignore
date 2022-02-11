@@ -8,6 +8,7 @@
 /obj
 /publish
 /Client/dist
+.angular
 
 # dependencies
 node_modules

@@ -22,7 +22,7 @@
                             <td>{{ customer.lastName | capitalize }}</td>
                             <td>{{ customer.address }}</td>
                             <td>{{ customer.city | trim }}</td>
-                            <td>{{ customer.state.name }}</td>
+                            <td>{{ customer.state?.name }}</td>
                             <td>{{ customer.orderTotal | currency:'USD':'symbol' }}</td>
                         </tr>
                         <tr *ngIf="!customers.length">

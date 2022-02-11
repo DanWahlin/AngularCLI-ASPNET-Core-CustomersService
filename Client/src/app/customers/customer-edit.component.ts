@@ -19,10 +19,10 @@ export class CustomerEditComponent implements OnInit {
     city: '',
     zip: 0
   };
-  states: IState[];
-  errorMessage: string;
-  deleteMessageEnabled: boolean;
-  operationText: string = 'Insert';
+  states: IState[] = [];
+  errorMessage = '';
+  deleteMessageEnabled = false;
+  operationText = 'Insert';
   
   constructor(private router: Router, 
               private route: ActivatedRoute, 
@@ -87,7 +87,7 @@ export class CustomerEditComponent implements OnInit {
 
   delete(event: Event) {
     event.preventDefault();
-    this.dataService.deleteCustomer(this.customer.id)
+    this.dataService.deleteCustomer(this.customer.id as string)
         .subscribe((status: boolean) => {
           if (status) {
             this.router.navigate(['/customers']);

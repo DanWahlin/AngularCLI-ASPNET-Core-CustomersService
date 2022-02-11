@@ -8,10 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class PaginationComponent implements OnInit {
   
-  private pagerTotalItems: number;
-  private pagerPageSize: number;
+  private pagerTotalItems = 0;
+  private pagerPageSize = 0;
   
-  totalPages: number;
+  totalPages = 0;
   pages: number[] = [];
   currentPage: number = 1;
   isVisible: boolean = false;

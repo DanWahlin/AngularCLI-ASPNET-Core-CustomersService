@@ -6,7 +6,7 @@ import { propertyResolver } from '../shared/property-resolver';
 })
 export class Sorter {
 
-	property: string = null;
+	property: string | null = null;
 	direction: number = 1;
 
     sort(collection: any[], prop: any) {

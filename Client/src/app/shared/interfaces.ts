@@ -17,6 +17,7 @@ export interface ICustomer {
 }
 
 export interface IState {
+    id: number;
     abbreviation: string;
     name: string;
 }

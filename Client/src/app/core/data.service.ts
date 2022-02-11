@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable,  } from 'rxjs';
+import { Observable, throwError,  } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ICustomer, IOrder, IState, IPagedResults, ICustomerResponse } from '../shared/interfaces';
+import { ICustomer, IState, IPagedResults, ICustomerResponse } from '../shared/interfaces';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -33,7 +33,8 @@ export class DataService {
             .pipe(            
                 map((res) => {
                     //Need to observe response in order to get to this header (see {observe: 'response'} above)
-                    const totalRecords = +res.headers.get('x-inlinecount');
+                    const xInlineCount = res.headers.get('X-InlineCount');
+                    const totalRecords = Number(xInlineCount);
                     let customers = res.body as ICustomer[];
                     this.calculateCustomersOrderTotal(customers);
                     return {
@@ -105,9 +106,11 @@ export class DataService {
         console.error('server error:', error); 
         if (error.error instanceof Error) {
           let errMessage = error.error.message;
-          return Observable.throw(errMessage);
+          return throwError(() => new Error(errMessage));
+          // Use the following instead if using lite-server
+          //return Observable.throw(err.text() || 'backend server error');
         }
-        return Observable.throw(error || 'ASP.NET Core server error');
+        return throwError(() => new Error(error.message || 'Node.js server error'));
     }
 
 }

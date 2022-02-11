@@ -439,7 +439,7 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/Angular-CLI-ASPNET-Core-CustomersService/Client/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/AngularCLI-ASPNET-Core-CustomersService/Client/src/styles.css */"./src/styles.css");
 
 
 /***/ })

@@ -6468,7 +6468,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/Angular-CLI-ASPNET-Core-CustomersService/Client/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/AngularCLI-ASPNET-Core-CustomersService/Client/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

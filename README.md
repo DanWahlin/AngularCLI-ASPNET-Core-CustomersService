@@ -19,9 +19,9 @@ To run the project perform the following steps:
 
 NOTE: If you're on Windows, download the project from Github as a .zip file, and want to open the project in Visual Studio, make sure you unblock the .zip file first. Right-click on it, select Properties, and check the Unblock checkbox.
 
-1. Install Node.js 12.16.x or higher - https://nodejs.org
+1. Install Node.js 14 or higher - https://nodejs.org
 
-2. Install ASP.NET core 3.1 or higher - https://dot.net
+2. Install ASP.NET core 5 or higher - https://dot.net
 
 3. Install the Angular CLI:
 

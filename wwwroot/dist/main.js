@@ -1959,7 +1959,7 @@ _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().boot
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/Angular-CLI-ASPNET-Core-CustomersService/Client/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/AngularCLI-ASPNET-Core-CustomersService/Client/src/main.ts */"./src/main.ts");
 
 
 /***/ })
